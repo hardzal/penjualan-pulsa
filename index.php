@@ -64,14 +64,13 @@
             </div>
         </footer>
     </div>
-
-    <script type="text/javascript" src="./assets/plugins/js/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="./assets/js/jquery-3.3.1.js"></script>
     <script type="text/javascript" src="./assets/plugins/bootstrap-4.1.3/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="./assets/plugins/fontawesome-free-5.5-web/js/all.min.js"></script>
+    <script type="text/javascript" src="./assets/plugins/fontawesome-free-5.5.0-web/js/all.min.js"></script>
     <script type="text/javascript" src="./assets/plugins/DataTables/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="./assets/plugins/DataTables/js/dataTables.bootstrap4.min.js"></script>
     <script type="text/javascript" src="./assets/plugins/datepicker/js/bootstrap-datepicker.min.js"></script>
-    <script type="text/javascript" src="./assets/plugins/sweetalert.min.js"></script>
+    <script type="text/javascript" src="./assets/plugins/sweetalert/js/sweetalert.min.js"></script>
     <script type="text/javascript" src="./assets/plugins/chosen-bootstrap-4/js/chosen.jquery.js"></script>
 
     <script type="text/javascript">
@@ -104,17 +103,17 @@
             return null;
         }
 
-        function goodChars(e, goods, field) {
-            var key, keyChar;
+        function goodchars(e, goods, field) {
+            var key, keychar;
             key = getKey(e);
 
             if (key == null) return true;
 
             keychar = String.fromCharCode(key);
-            keychar = keyChar.toLowerCase();
+            keychar = keychar.toLowerCase();
             goods = goods.toLowerCase();
 
-            if (good.indexOf(keyChar) != -1) {
+            if (goods.indexOf(keychar) != -1) {
                 return true;
             }
 
