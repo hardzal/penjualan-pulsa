@@ -41,10 +41,10 @@
                         <a class="nav-link mr-1 menu" id="pulsa" href="javascript: void(0);"><i class="fas fa-tablet-alt title-icon"></i> Pulsa</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link mr-1 menu" id="pulsa" href="javascript: void(0);"><i class="fas fa-shopping-cart title-icon"></i> Penjualan</a>
+                        <a class="nav-link mr-1 menu" id="penjualan" href="javascript: void(0);"><i class="fas fa-shopping-cart title-icon"></i> Penjualan</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link mr-1 menu" id="pulsa" href="javascript: void(0);"><i class="fas fa-file-alt title-icon"></i> Laporan</a>
+                        <a class="nav-link mr-1 menu" id="laporan" href="javascript: void(0);"><i class="fas fa-file-alt title-icon"></i> Laporan</a>
                     </li>
                 </ul>
             </div>

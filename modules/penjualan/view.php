@@ -96,7 +96,7 @@
                             }
 
                             $stmt->execute();
-
+                            $result = $stmt->get_result();
                             while ($data_pulsa = $result->fetch_assoc()) {
                                 ?>
                                 <option value="<?= $data_pulsa['id_pulsa']; ?>"><?= $data_pulsa['provider']; ?> - <?= number_format($data_pulsa['nominal']); ?></option>
@@ -116,7 +116,7 @@
                             <div class="input-group-prepend">
                                 <div class="input-group-text">Rp.</div>
                             </div>
-                            <input type="text" name="harga" class="form-control" id="harga" readonyly />
+                            <input type="text" name="harga" class="form-control" id="harga" readonly />
                         </div>
                     </div>
                 </div>
@@ -162,6 +162,7 @@
             },
             dataType: "json",
             success: function(result) {
+                console.log(id_pulsa);
                 $('#harga').val(result.harga);
             }
         });
@@ -183,17 +184,18 @@
                 "iTotal": oSettings.fnRecordsDisplay(),
                 "iFilteredTotal": oSettings.fnRecordsDisplay(),
                 "iPage": Math.ceil(oSettings._iDisplayStart / oSettings._iDisplayLength),
-                "iTotalPages": Matil.ceil(oSettings.fnRecordsDisplay() / oSettings._iDisplayLength)
+                "iTotalPages": Math.ceil(oSettings.fnRecordsDisplay() / oSettings._iDisplayLength)
             };
         };
 
-        var table = $('#table-penjualan').DataTable({
-            "scrollV": '45vh',
+        var table = $('#tabel-penjualan').DataTable({
+            "scrollY": '45vh',
             "scrollCollapse": true,
             "processing": true,
             "serverSide": true,
-            "ajax": "modules/penjualan/data.php",
-            "columnDefs": [{
+            "ajax": 'modules/penjualan/data.php',
+            "columnDefs": [
+                {
                     "targets": 0,
                     "data": null,
                     "orderable": false,
@@ -207,7 +209,7 @@
                 },
                 {
                     "targets": 2,
-                    "visible": '70px',
+                    "width": '70px',
                     "className": 'center'
                 },
                 {
@@ -251,6 +253,7 @@
                     "className": 'center',
                     "render": function(data, type, row) {
                         var btn = `<a style=\"margin-right: 7px;\" title=\"Ubah\" class=\"btn btn-info btn-sm getUbah\" href=\"javascript:void(0);\"><i class=\"fas fa-edit\"></i></a><a title=\"Hapus\" class=\"btn btn-danger btn-sm bntHapus\" href=\"javascript:void(0)\"><i class=\"fas fa-trash\"></i></a>`;
+                        return btn;
                     }
                 }
             ],

@@ -48,7 +48,7 @@
 
                     <div class="form-group">
                         <label for="nominal">Nominal</label>
-                        <input type="text" name="nominal" class="form-control" id="nominal" onKeyPress="return goodchars(event, '012346789', this)" autocomplete="off" />
+                        <input type="text" name="nominal" class="form-control" id="nominal" onKeyPress="return goodchars(event, '0123456789', this)" autocomplete="off" />
                     </div>
 
                     <div class="form-group">
