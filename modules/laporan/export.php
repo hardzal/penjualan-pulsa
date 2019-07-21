@@ -10,22 +10,23 @@ if (isset($_GET['tgl_awal'])) :
 
     ?>
 
-    <div class='center'>
+    <center>
         <h3>LAPORAN DATA PENJUALAN</h3>
-    </div>
+    </center>
 
     <table border='1'>
         <h3>
             <thead>
-                <tr class="center" valign="middle">No.</tr>
-                <tr class="center" valign="middle">Tanggal</tr>
-                <tr class="center" valign="middle">Nama Pelanggan</tr>
-                <tr class="center" valign="middle">No. Hp</tr>
-                <tr class="center" valign="middle">Pulsa</tr>
-                <tr class="center" valign="middle">Jumlah Bayar</tr>
+                <tr>
+                    <th class="center" valign="middle">No.</th>
+                    <th class="center" valign="middle">Tanggal</th>
+                    <th class="center" valign="middle">Nama Pelanggan</th>
+                    <th class="center" valign="middle">No. Hp</th>
+                    <th class="center" valign="middle">Pulsa</th>
+                    <th class="center" valign="middle">Jumlah Bayar</th>
+                </tr>
             </thead>
         </h3>
-
         <tbody>
             <?php
             $no = 1;
@@ -51,11 +52,11 @@ if (isset($_GET['tgl_awal'])) :
             while ($data = $result->fetch_assoc()) {
                 echo "<tr>
                             <td width='30' class='center'>" . $no . "</td>
-                            <td width='90' class='center'>" . date('d-m-Y', strtotime($data['tanggal'])) . "</td>
-                            <td width='170'>" . $data['nama'] . "</td>
-                            <td width='90' class='center'>" . $data['no_hp'] . "</td>
-                            <td width='170'>" . $data['provider'] . " - " . number_format($data['nominal']) . "</td>
-                            <td width='100' class='right'>Rp." . number_format($data['jumlah_bayar']) . "</td>
+                            <td width='120' class='center'>" . date('d-m-Y', strtotime($data['tanggal'])) . "</td>
+                            <td width='200'>" . $data['nama'] . "</td>
+                            <td width='150' class='center'>" . $data['no_hp'] . "</td>
+                            <td width='200'>" . $data['provider'] . " - " . number_format($data['nominal']) . "</td>
+                            <td width='150' class='right'>Rp." . number_format($data['jumlah_bayar']) . "</td>
                     </tr>";
                 $no++;
                 $total += $data['jumlah_bayar'];

@@ -10,7 +10,7 @@
 
 <div class="row">
     <div class="col-md-12">
-        <form method="POST" id="FormFilter" action="modules/laporan/export.php">
+        <form method="GET" id="formFilter" action="modules/laporan/export.php">
 
             <div class="row">
                 <div class="col">
@@ -26,25 +26,25 @@
                         <input type="text" class="form-control date-picker" id="tgl_awal" name="tgl_awal" placeholder="Tanggal awal" autocomplete="off" data-date-format="dd-mm-yyyy" required />
                     </div>
                 </div>
-            </div>
 
-            <div class="col">
-                <div class="form-group">
-                    <input type="text" class="form-control date-picker" id="tgl_akhir" name="tgl_akhir" placeholder="Tanggal akhir" autocomplete="off" data-date-format="dd-mm-yyyy" required />
+                <div class="col">
+                    <div class="form-group">
+                        <input type="text" class="form-control date-picker" id="tgl_akhir" name="tgl_akhir" placeholder="Tanggal akhir" autocomplete="off" data-date-format="dd-mm-yyyy" required />
+                    </div>
                 </div>
-            </div>
 
-            <div class="col">
-                <div class="form-group">
-                    <button type="button" class="btn btn-info btn-submit" id="btnTampil">Tampilkan</button>
+                <div class="col">
+                    <div class="form-group">
+                        <button type="button" class="btn btn-info btn-submit" id="btnTampil">Tampilkan</button>
+                    </div>
                 </div>
-            </div>
 
-            <div class="col">
-                <div class="form-group right">
-                    <button class="btn btn-success" type="submit" id="btnExport">
-                        <i class="fas fa-file-excel title-icon"></i> Export ke Excel
-                    </button>
+                <div class="col">
+                    <div class="form-group right">
+                        <button class="btn btn-success" type="submit" id="btnExport">
+                            <i class="fas fa-file-excel title-icon"></i> Export ke Excel
+                        </button>
+                    </div>
                 </div>
             </div>
         </form>
@@ -54,7 +54,7 @@
 <div class="border mt-2 mb-4"></div>
 
 <div class="row">
-    <div class="tabelLaporan" class="col-md-12">
+    <div id="tabelLaporan" class="col-md-12">
         <table class="table table-striped table-bordered" style="width: 100%;">
             <thead>
                 <tr>
@@ -66,8 +66,8 @@
                     <th class="center">Jumlah Bayar</th>
                 </tr>
             </thead>
+            <tbody id="loadData"></tbody>
         </table>
-        <tbody id="loadData"></tbody>
     </div>
 </div>
 
@@ -92,14 +92,14 @@
                 swal("Peringatan!", "Tanggal akhir tidak boleh kosong.", "warning");
             } else {
                 var data = $('#formFilter').serialize();
-
                 $.ajax({
                     type: "GET",
                     url: "modules/laporan/get_data.php",
                     data: data,
-                    success: function(data) {
+                    success: function(result) {
+                        console.log(result);
                         $('#tabelLaporan').show();
-                        $('#loadData').html(data);
+                        $('#loadData').html(result);
                         $('#btnExport').show();
                     }
                 });

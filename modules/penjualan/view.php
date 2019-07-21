@@ -162,7 +162,6 @@
             },
             dataType: "json",
             success: function(result) {
-                console.log(id_pulsa);
                 $('#harga').val(result.harga);
             }
         });
@@ -194,8 +193,7 @@
             "processing": true,
             "serverSide": true,
             "ajax": 'modules/penjualan/data.php',
-            "columnDefs": [
-                {
+            "columnDefs": [{
                     "targets": 0,
                     "data": null,
                     "orderable": false,
@@ -252,7 +250,7 @@
                     "width": '60px',
                     "className": 'center',
                     "render": function(data, type, row) {
-                        var btn = `<a style=\"margin-right: 7px;\" title=\"Ubah\" class=\"btn btn-info btn-sm getUbah\" href=\"javascript:void(0);\"><i class=\"fas fa-edit\"></i></a><a title=\"Hapus\" class=\"btn btn-danger btn-sm bntHapus\" href=\"javascript:void(0)\"><i class=\"fas fa-trash\"></i></a>`;
+                        var btn = `<a style=\"margin-right: 7px;\" title=\"Ubah\" class=\"btn btn-info btn-sm getUbah\" href=\"javascript:void(0);\"><i class=\"fas fa-edit\"></i></a><a title=\"Hapus\" class=\"btn btn-danger btn-sm btnHapus\" href=\"javascript:void(0)\"><i class=\"fas fa-trash\"></i></a>`;
                         return btn;
                     }
                 }
@@ -277,7 +275,7 @@
             $('#modalLabel').text('Entri Data Penjualan');
         });
 
-        $('#table-penjualan tbody').on('click', '.getUbah', function() {
+        $('#tabel-penjualan tbody').on('click', '.getUbah', function() {
             $('#modalLabel').text('Ubah Data Penjualan');
 
             var data = table.row($(this).parents('tr')).data();
@@ -320,7 +318,6 @@
             } else {
                 if ($('#modalLabel').text() == "Entri Data Penjualan") {
                     var data = $('#formPenjualan').serialize();
-
                     $.ajax({
                         type: "POST",
                         url: "modules/penjualan/insert.php",
@@ -336,6 +333,29 @@
                                 table.ajax.reload(null, false);
                             } else {
                                 swal("Gagal!", "Data penjualan tidak bisa diubah.", "error");
+                            }
+                        }
+                    });
+                    return false;
+                } else if ($('#modalLabel').text() == "Ubah Data Penjualan") {
+                    var data = $('#formPenjualan').serialize();
+
+                    $.ajax({
+                        type: "POST",
+                        url: "modules/penjualan/update.php",
+                        data: data,
+                        success: function(result) {
+                            if (result == "sukses") {
+                                $('#formPenjualan')[0].reset();
+                                $('#id_pelanggan').val('').trigger('chosen:updated');
+                                $('#id_pulsa').val('').trigger('chosen:updated');
+                                $('#modalPenjualan').modal('hide');
+                                swal("Sukses!", "Data penjualan berhasil diubah", "success");
+
+                                var table = $('#tabel-penjualan').DataTable();
+                                table.ajax.reload(null, false);
+                            } else {
+                                swal("Gagal!", "Data Penjualan tidak bisa diubah", "error");
                             }
                         }
                     });

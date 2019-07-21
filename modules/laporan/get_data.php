@@ -24,13 +24,12 @@ if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && ($_SERVER['HTTP_X_REQUESTED_WITH
         $stmt->execute();
 
         $result = $stmt->get_result();
-
         while ($data = $result->fetch_assoc()) {
             echo "<tr>
                     <td width='30' class='center'>" . $no . "</td>
                     <td width='90' class='center'>" . date('d-m-Y', strtotime($data['tanggal'])) . "</td>
                     <td width='170'>" . $data['nama'] . "</td>
-                    <td width='90' class='center'>" . $data['no_ho'] . "</td>
+                    <td width='90' class='center'>" . $data['no_hp'] . "</td>
                     <td width='170'>" . $data['provider'] . " - " . number_format($data['nominal']) . "</td>
                     <td width='100'>Rp. " . number_format($data['jumlah_bayar']) . "</td>
                 </tr>";
